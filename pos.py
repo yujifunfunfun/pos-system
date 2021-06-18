@@ -46,25 +46,19 @@ class Order:
             self.sum += item_data[1] * int(j)
             self.count += int(j)
             eel.view_log_data('商品名：{0},価格：{1}円,{2}個'.format(item_data[0],item_data[1],j))
-            # self.write_receipt('商品名：{0},価格：{1}円,{2}個'.format(item_data[0],item_data[1],j))
+
         eel.view_log_sum('合計個数：{0}個,合計金額{1}円'.format(self.count,self.sum))
-        # self.write_receipt('合計個数：{0}個,合計金額{1}円'.format(self.count,self.sum))
+
        
 
     def compute_change(self,money):
         change = int(money) - self.sum          
         if change>=0:    
             eel.view_log_change(change)
-            
         else:
             eel.view_log_change('お預かり金額が不足しています')
                 
-    def write_receipt(self,data):
-        with open(self.datetime,mode='a',encoding='utf-8') as f:
-            f.write(data + '\n')
 
-
-        
 
 def add_item_master_from_csv(csv_path):
     item_master =[]
@@ -77,17 +71,14 @@ def add_item_master_from_csv(csv_path):
 
     
     
-### メイン処理
+
 def main():
-    # マスタ登録
     item_master = add_item_master_from_csv('item_master.csv')
     
-    # オーダー登録
     order=Order(item_master)
     order.add_order()
 
     
-    # オーダー表示
     order.display_order_data()
 
     order.compute_change()
