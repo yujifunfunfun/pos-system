@@ -11,7 +11,7 @@ class Item:
     def get_price(self):
         return self.price
 
-### オーダークラス
+
 class Order:
     def __init__(self,item_master):
         self.item_order_list=[]

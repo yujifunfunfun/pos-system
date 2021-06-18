@@ -1,5 +1,5 @@
 import eel
-from pos import Item,Order
+from pos import Order
 import pos
 
 
